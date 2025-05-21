@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Área do Cliente - Casamentos & Sonhos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <div class="logo"> Casamentos & Sonhos</div>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="cliente.html">Área do Cliente</a>
+        <a href="index.html#contato">Contato</a>
+    </nav>
+</header>
+
+
+
+<main style="margin-top: 120px;">
+    <section>
+        <h2>Bem-vindo à sua Área do Cliente</h2>
+        <div class="grid-servicos">
+            <div class="card-servico">
+                <i class="fas fa-file-contract"></i>
+                <h3>Contratos</h3>
+                <p>Acesse seus contratos assinados.</p>
+                <a href="#">Ver Contratos</a>
+            </div>
+            <div class="card-servico">
+                <i class="fas fa-file-invoice-dollar"></i>
+                <h3>Orçamentos</h3>
+                <p>Veja os orçamentos aprovados.</p>
+                <a href="#">Ver Orçamentos</a>
+            </div>
+            <div class="card-servico">
+                <i class="fas fa-calendar-alt"></i>
+                <h3>Cronograma</h3>
+                <p>Acompanhe o planejamento do evento.</p>
+                <a href="#">Ver Cronograma</a>
+            </div>
+            <div class="card-servico">
+                <i class="fas fa-upload"></i>
+                <h3>Enviar Documentos</h3>
+                <p>Faça upload de arquivos relacionados ao seu casamento.</p>
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <input type="file" name="documento" />
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+<div style="text-align: center; margin-top: 2rem;">
+    <button onclick="logout()" style="padding: 0.8rem 1.5rem; background-color: #81C784; color: white; border: none; border-radius: 8px; cursor: pointer;">
+        Sair da Conta
+    </button>
+</div>
+<script>
+    // Verifica se o cliente está logado
+    if (localStorage.getItem('clienteLogado') === 'true') {
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.display = 'block';
+        });
+    } else {
+        // Redireciona se não estiver logado
+        window.location.href = "login.html";
+    }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Presentes - Casamentos & Sonhos</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        main {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2E7D32;
+            margin-bottom: 2rem;
+        }
+
+        .grid-presentes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .card-presente {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            text-align: center;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-presente:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-presente img {
+            max-height: 160px;         /* Limita a altura da imagem */
+            width: auto;               /* Mantém a proporção original */
+            margin: 0 auto;            /* Centraliza horizontalmente */
+            display: block;
+            object-fit: contain;       /* Ajusta a imagem dentro do espaço */
+            border-radius: 12px;
+        }
+
+        .card-presente h3 {
+            color: #2E7D32;
+            margin-top: 1rem;
+        }
+
+        .card-presente p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        form {
+            margin-top: 3rem;
+            background: #f9fbe7;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+        }
+
+        form h3 {
+            color: #2E7D32;
+            margin-bottom: 1rem;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.7rem 0;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        form button {
+            background: #81C784;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        form button:hover {
+            background: #66bb6a;
+        }
+
+        .next-step {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .next-step a {
+            padding: 0.8rem 2rem;
+            background: #FFD54F;
+            color: #2E7D32;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn-voltar {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.8rem;
+            border: 2px solid #81C784;
+            color: #2E7D32;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .btn-voltar:hover {
+            background: #eafbe8;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            background: #f9fbe7;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            font-weight: 500;
+        }
+
+        .checkbox-item:hover {
+            background: #e6f5e7;
+            transform: scale(1.02);
+            box-shadow: 0 2px 10px rgba(129, 199, 132, 0.2);
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo"> Casamentos & Sonhos</div>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="planos.html">Planos</a>
+        <a href="index.html#contato">Contato</a>
+    </nav>
+    <div class="logout-btn" onclick="logout()" title="Sair">
+        <img src="imagens/logout.png" alt="Sair">
+    </div>
+</header>
+
+<div class="barra-etapas">
+    <a href="planos.html" class="etapa">Plano</a>
+    <a href="planejamento.html" class="etapa">Estilo</a>
+    <a href="lista-convidados.html" class="etapa">Convidados</a>
+    <a href="convite-digital.html" class="etapa">Convite</a>
+    <a href="rsvp.html" class="etapa">RSVP</a>
+    <a href="presentes.html" class="etapa ativo">Presentes</a>
+    <a href="cronograma.html" class="etapa">Cronograma</a>
+    <a href="resumo.html" class="etapa">Resumo</a>
+</div>
+
+<main>
+    <h2>Sugestões de Presentes</h2>
+    <div class="grid-presentes">
+        <div class="card-presente" data-aos="fade-up" data-aos-delay="100">
+            <img src="imagens/adega.jpg" alt="Adega Climatizada">
+            <h3>Adega Climatizada</h3>
+            <p>Para guardar os vinhos das comemorações futuras.</p>
+        </div>
+        <div class="card-presente" data-aos="fade-up" data-aos-delay="100">
+            <img src="imagens/cafeteira.webp" alt="Cafeteira Elétrica">
+            <h3>Cafeteira Elétrica</h3>
+            <p>Um toque de aconchego para as manhãs do casal.</p>
+        </div>
+        <div class="card-presente" data-aos="fade-up" data-aos-delay="100">
+            <img src="imagens/jogo-cama.jpg" alt="Jogo de Cama">
+            <h3>Jogo de Cama</h3>
+            <p>Conforto e carinho para os primeiros dias juntos.</p>
+        </div>
+    </div>
+
+    <form id="form-personalizado">
+        <h3>Quero Presentear com Algo Diferente</h3>
+        <input type="text" name="nome" placeholder="Seu nome" required>
+        <input type="tel" name="telefone" placeholder="Seu telefone (com DDD)" required>
+
+        <label style="margin-top: 1rem; font-weight: 500;">Ou escolha entre algumas sugestões:</label>
+        <div id="sugestoes-presentes" style="margin: 1rem 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem;">
+            <label class="checkbox-item">
+                <input type="checkbox" value="Jogo de Toalhas" data-img="imagens/toalha.webp."> Jogo de Toalhas
+            </label>
+            <label class="checkbox-item">
+                <input type="checkbox" value="Aparelho de Jantar" data-img="imagens/jantar.webp."> Aparelho de Jantar
+            </label>
+            <label class="checkbox-item">
+                <input type="checkbox" value="Liquidificador" data-img="imagens/liquidificador.webp."> Liquidificador
+            </label>
+            <label class="checkbox-item">
+                <input type="checkbox" value="Aspirador de Pó" data-img="imagens/aspirador.jpg."> Aspirador de Pó
+            </label>
+            <label class="checkbox-item">
+                <input type="checkbox" value="Conjunto de Panelas" data-img="imagens/panelas.webp."> Conjunto de Panelas
+            </label>
+            <label class="checkbox-item">
+                <input type="checkbox" value="Smart TV" data-img="imagens/smarttv.webp."> Smart TV
+            </label>
+            <label class="checkbox-item">
+                <input type="checkbox" value="Micro-ondas" data-img="imagens/microondas.jpg."> Micro-ondas
+            </label>
+            <label class="checkbox-item">
+                <input type="checkbox" value="Ventilador" data-img="imagens/ventilador.webp."> Ventilador
+            </label>
+            <label class="checkbox-item">
+                <input type="checkbox" value="Faqueiro Inox" data-img="imagens/faqueiro.jpg."> Faqueiro Inox
+            </label>
+        </div>
+
+        <div id="imagensSelecionadas" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;"></div>
+
+        <input type="text" name="presente" id="campoPresente" placeholder="Presente que deseja oferecer" required>
+
+
+        <button type="submit">Enviar Presente</button>
+    </form>
+
+    <div class="next-step">
+        <a href="rsvp.html" class="btn-voltar">← Voltar Etapa</a>
+    </div>
+    <div class="next-step" style="margin-top: 1.5rem;">
+        <a href="cronograma.html" class="btn-avancar">Próxima Etapa: Cronograma</a>
+    </div>
+</main>
+
+<script>
+    document.getElementById('form-personalizado').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert("Obrigado por sua generosidade! Seu presente foi registrado com carinho 💝");
+        this.reset();
+    });
+
+    document.body.classList.add('fade-in');
+</script>
+<script>
+    function logout() {
+        localStorage.removeItem('clienteLogado');
+        window.location.href = "login.html";
+    }
+</script>
+<script>
+    const checkboxes = document.querySelectorAll('#sugestoes-presentes input[type="checkbox"]');
+    const campoPresente = document.getElementById('campoPresente');
+    const imagensSelecionadas = document.getElementById('imagensSelecionadas');
+
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', () => {
+            const selecionados = [];
+            imagensSelecionadas.innerHTML = '';
+
+            checkboxes.forEach(c => {
+                if (c.checked) {
+                    selecionados.push(c.value);
+
+                    // Adiciona imagem visual
+                    const img = document.createElement('img');
+                    img.src = c.dataset.img;
+                    img.alt = c.value;
+                    img.title = c.value;
+                    img.style.width = '70px';
+                    img.style.height = '70px';
+                    img.style.objectFit = 'cover';
+                    img.style.borderRadius = '10px';
+                    imagensSelecionadas.appendChild(img);
+                }
+            });
+
+            campoPresente.value = selecionados.join(', ');
+        });
+    });
+</script>
+
+</body>
+</html>

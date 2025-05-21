@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Serviços - Casamentos & Sonhos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <style>
+        .grid-servicos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .card-servico {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-servico::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .card-servico:hover::after {
+            left: 100%;
+        }
+
+        .card-servico:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+
+        .card-servico img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .card-servico i {
+            font-size: 2rem;
+            color: #81C784;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-servico h3 {
+            color: #2E7D32;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-servico p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        .plano-incluso {
+            display: inline-block;
+            margin-top: 0.5rem;
+            background: #F1F8E9;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: #388E3C;
+        }
+
+        .depoimentos {
+            background: #F9FBE7;
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .depoimentos h3 {
+            color: #2E7D32;
+            margin-bottom: 2rem;
+        }
+
+        .depoimentos p {
+            font-style: italic;
+            color: #444;
+        }
+
+        .whatsapp-contato {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .whatsapp-contato a {
+            background: #81C784;
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+
+        .whatsapp-contato a:hover {
+            background: #66bb6a;
+        }
+
+        .link-servico {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo"> Casamentos & Sonhos</div>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="planos.html">Planos</a>
+        <a href="index.html#contato">Contato</a>
+    </nav>
+    <div class="logout-btn" onclick="logout()" title="Sair">
+        <img src="imagens/logout.png" alt="Sair">
+    </div>
+</header>
+
+<main style="margin-top: 120px;">
+    <section id="servicos">
+        <h2>Nossos Serviços</h2>
+        <div class="grid-servicos">
+            <a href="planos.html" class="link-servico">
+                <div class="card-servico" data-aos="fade-up">
+                    <img src="imagens/assesoria.jpg" alt="Assessoria Completa">
+                    <i class="fas fa-ring"></i>
+                    <h3>Assessoria Completa</h3>
+                    <p>Cuidamos de todos os detalhes com carinho e profissionalismo.</p>
+                    <span class="plano-incluso">Incluído em todos os planos</span>
+                </div>
+            </a>
+            <a href="planos.html" class="link-servico">
+                <div class="card-servico" data-aos="fade-up">
+                    <img src="imagens/buffet.webp" Buffet Personalizado">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Buffet Personalizado</h3>
+                    <p>Gastronomia de alto padrão com opções para todos os estilos.</p>
+                    <span class="plano-incluso">Plano Completo e Luxo</span>
+                </div>
+            </a>
+            <a href="planos.html" class="link-servico">
+                <div class="card-servico" data-aos="fade-up">
+                    <img src="imagens/fotografia-logo.jpg" alt="Fotografia">
+                    <i class="fas fa-camera-retro"></i>
+                    <h3>Fotografia & Filmagem</h3>
+                    <p>Registros inesquecíveis com qualidade cinematográfica.</p>
+                    <span class="plano-incluso">Plano Completo e Luxo</span>
+                </div>
+            </a>
+            <a href="planos.html" class="link-servico">
+                <div class="card-servico" data-aos="fade-up">
+                    <img src="imagens/decoracao.jpg" alt="Decoração">
+                    <i class="fas fa-spa"></i>
+                    <h3>Decoração Temática</h3>
+                    <p>Ambientes personalizados com flores, luzes e estilo do casal.</p>
+                    <span class="plano-incluso">Plano Luxo</span>
+                </div>
+            </a>
+            <a href="planos.html" class="link-servico">
+                <div class="card-servico" data-aos="fade-up">
+                    <img src="imagens/dj.avif" alt="DJ e Iluminação">
+                    <i class="fas fa-music"></i>
+                    <h3>DJ & Iluminação</h3>
+                    <p>Festa animada com trilha sonora personalizada e luzes incríveis.</p>
+                    <span class="plano-incluso">Plano Luxo</span>
+                </div>
+            </a>
+            <a href="planos.html" class="link-servico">
+                <div class="card-servico" data-aos="fade-up">
+                    <img src="imagens/lembranca.jpg" alt="Lembranças">
+                    <i class="fas fa-gift"></i>
+                    <h3>Lembranças Personalizadas</h3>
+                    <p>Presentinhos especiais para encantar seus convidados.</p>
+                    <span class="plano-incluso">Plano Completo e Luxo</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section class="depoimentos" data-aos="fade-up">
+        <h3>O que dizem nossos noivos</h3>
+        <p>“Tudo saiu perfeito, do buffet à cerimônia. Foi um sonho realizado!”<br>— Carla & Rodrigo</p>
+        <p>“A equipe cuidou de cada detalhe como se fosse o próprio casamento deles.”<br>— Marina & Paulo</p>
+    </section>
+
+    <div class="whatsapp-contato" data-aos="fade-up">
+        <p><strong>Ficou com dúvidas sobre os serviços?</strong></p>
+        <a href="https://wa.me/5599999999999" target="_blank">Fale conosco no WhatsApp</a>
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init({once: true});
+    document.body.classList.add('fade-in');
+</script>
+<script>
+    function logout() {
+        localStorage.removeItem('clienteLogado');
+        window.location.href = "login.html";
+    }
+</script>
+</body>
+</html>

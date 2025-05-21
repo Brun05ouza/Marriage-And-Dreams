@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Convite Digital - Casamentos & Sonhos</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .container {
+            max-width: 900px;
+            margin: 120px auto 4rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2E7D32;
+            margin-bottom: 2rem;
+        }
+
+        textarea, select {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.2rem;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            resize: vertical;
+        }
+
+        .preview {
+            border-radius: 15px;
+            padding: 2rem;
+            background: #F1F8E9;
+            border: 2px dashed #81C784;
+            font-family: 'Georgia', serif;
+            color: #2E7D32;
+            margin-top: 1rem;
+            min-height: 150px;
+            white-space: pre-wrap;
+        }
+
+        .next-step {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .next-step a {
+            flex: 1;
+            text-align: center;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+
+        .btn-avancar {
+            background: #FFD54F;
+            color: #2E7D32;
+        }
+
+        .btn-avancar:hover {
+            background: #ffcc2d;
+        }
+
+        .btn-voltar {
+            background: transparent;
+            border: 2px solid #81C784;
+            color: #2E7D32;
+        }
+
+        .btn-voltar:hover {
+            background: #e6f5e7;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo"> Casamentos & Sonhos</div>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="planos.html">Planos</a>
+        <a href="index.html#contato">Contato</a>
+    </nav>
+    <div class="logout-btn" onclick="logout()" title="Sair">
+        <img src="imagens/logout.png" alt="Sair">
+    </div>
+</header>
+
+<div class="barra-etapas">
+    <a href="planos.html" class="etapa">Plano</a>
+    <a href="planejamento.html" class="etapa">Estilo</a>
+    <a href="lista-convidados.html" class="etapa">Convidados</a>
+    <a href="convite-digital.html" class="etapa ativo">Convite</a>
+    <a href="rsvp.html" class="etapa">RSVP</a>
+    <a href="presentes.html" class="etapa">Presentes</a>
+    <a href="cronograma.html" class="etapa">Cronograma</a>
+    <a href="resumo.html" class="etapa">Resumo</a>
+</div>
+
+<main>
+    <div class="container">
+        <h2>Crie Seu Convite Digital</h2>
+
+        <label for="convite">Mensagem do Convite:</label>
+        <textarea id="convite" rows="6" placeholder="Ex: Com muita alegria convidamos você para o nosso casamento..."></textarea>
+
+        <label for="tema">Tema de Cor:</label>
+        <select id="tema">
+            <option value="#F1F8E9">Verde Claro</option>
+            <option value="#FFF8E1">Amarelo Pastel</option>
+            <option value="#FCE4EC">Rosê Claro</option>
+        </select>
+
+        <h3>Prévia do Convite</h3>
+        <div class="preview" id="previewConvite">Sua mensagem aparecerá aqui...</div>
+
+        <div class="next-step">
+            <a href="lista-convidados.html" class="btn-voltar">← Voltar Etapa</a>
+            <a href="rsvp.html" class="btn-avancar">Próxima Etapa: RSVP</a>
+        </div>
+    </div>
+</main>
+
+
+<script>
+    const textarea = document.getElementById('convite');
+    const tema = document.getElementById('tema');
+    const preview = document.getElementById('previewConvite');
+
+    function atualizarConvite() {
+        const texto = textarea.value || 'Sua mensagem aparecerá aqui...';
+        preview.textContent = texto;
+        preview.style.background = tema.value;
+
+        // Salva o texto no localStorage
+        localStorage.setItem('mensagemConvite', texto);
+    }
+
+    textarea.addEventListener('input', atualizarConvite);
+    tema.addEventListener('change', atualizarConvite);
+
+    // Atualiza ao carregar a página (se já houver valor salvo)
+    document.addEventListener('DOMContentLoaded', () => {
+        const salvo = localStorage.getItem('mensagemConvite');
+        if (salvo) {
+            textarea.value = salvo;
+            preview.textContent = salvo;
+        }
+        atualizarConvite();
+    });
+
+    document.body.classList.add('fade-in');
+</script>
+<script>
+    function logout() {
+        localStorage.removeItem('clienteLogado');
+        window.location.href = "login.html";
+    }
+</script>
+</body>
+</html>

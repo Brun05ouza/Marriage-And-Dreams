@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casamentos & Sonhos</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <a href="https://wa.me/5521965272231" class="whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</head>
+<body>
+
+<script>
+  if (localStorage.getItem('clienteLogado') !== 'true') {
+    window.location.href = "login.html";
+  }
+</script>
+  <!-- Cabeçalho -->
+  <header>
+    <div class="logo"> Casamentos & Sonhos</div>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="planos.html">Planos</a>
+      <a href="index.html#contato">Contato</a>
+    </nav>
+    <div class="logout-btn" onclick="logout()" title="Sair">
+      <img src="imagens/logout.png" alt="Sair">
+    </div>
+  </header>
+
+  <!-- Seção Hero -->
+  <section id="hero">
+    <div class="hero-content" data-aos="fade-up">
+      <h1>Seu Casamento dos Sonhos Começa Aqui</h1>
+      <a href="planos.html" class="cta-button">Comece Agora</a>
+    </div>
+  </section>
+
+<section id="planejamento" style="background: #F1F8E9; padding: 4rem 2rem;">
+  <h2>Como Planejar Seu Casamento</h2>
+  <div class="grid-servicos">
+    <div class="card-servico">
+      <i class="fas fa-gift"></i>
+      <h3>Lista de Presentes</h3>
+      <p>Monte sua lista online com links e Pix para que seus convidados presenteiem com facilidade.</p>
+    </div>
+    <div class="card-servico">
+      <i class="fas fa-utensils"></i>
+      <h3>Buffet Personalizado</h3>
+      <p>Escolha entre menus variados com fornecedores confiáveis e degustações.</p>
+    </div>
+    <div class="card-servico">
+      <i class="fas fa-envelope-open-text"></i>
+      <h3>Convite Digital</h3>
+      <p>Crie um convite interativo com data, localização e link de confirmação (RSVP).</p>
+    </div>
+    <div class="card-servico">
+      <i class="fas fa-heart"></i>
+      <h3>RSVP Online</h3>
+      <p>Facilite a confirmação de presença dos convidados com formulário e controle de entradas.</p>
+    </div>
+    <div class="card-servico">
+      <i class="fas fa-file-contract"></i>
+      <h3>Contratos & Orçamentos</h3>
+      <p>Visualize os documentos, revise os valores e assine tudo online.</p>
+    </div>
+    <div class="card-servico">
+      <i class="fas fa-calendar-alt"></i>
+      <h3>Cronograma do Casamento</h3>
+      <p>Acompanhe as etapas do planejamento e o roteiro completo do grande dia.</p>
+    </div>
+    <div class="card-servico">
+      <i class="fas fa-images"></i>
+      <h3>Galeria & Inspirações</h3>
+      <p>Veja fotos de casamentos reais e filtre por estilo ou local.</p>
+    </div>
+    <div class="card-servico">
+      <i class="fas fa-comments"></i>
+      <h3>Atendimento e Suporte</h3>
+      <p>Fale com nossa equipe por WhatsApp ou chatbot para tirar dúvidas rápidas.</p>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Vantagens -->
+  <section class="vantagens">
+    <div class="vantagem-item" data-aos="zoom-in">
+      <i class="fas fa-heart"></i>
+      <h3>Personalização Total</h3>
+      <p>Desde o tema até os menores detalhes</p>
+    </div>
+    <div class="vantagem-item" data-aos="zoom-in">
+      <i class="fas fa-hand-holding-heart"></i>
+      <h3>Orçamento Flexível</h3>
+      <p>Planos para todos os perfis</p>
+    </div>
+    <div class="vantagem-item" data-aos="zoom-in">
+      <i class="fas fa-calendar-check"></i>
+      <h3>+500 Casamentos Realizados</h3>
+      <p>Experiência comprovada</p>
+    </div>
+  </section>
+
+  <!-- Galeria -->
+  <section id="galeria">
+    <h2>Nossos Trabalhos</h2>
+    <div class="grid-galeria">
+      <div class="item-galeria" style="background-image: url('imagens/casamento1.jpg')"data-aos="fade-up"></div>
+      <div class="item-galeria" style="background-image: url('imagens/casamento2.png')"data-aos="fade-up"></div>
+      <div class="item-galeria" style="background-image: url('imagens/casamento3.jpg')"data-aos="fade-up"></div>
+      <div class="item-galeria" style="background-image: url('imagens/casamento4.jpg')"data-aos="fade-up"></div>
+    </div>
+  </section>
+
+  <!-- Depoimentos -->
+  <section id="depoimentos">
+    <h2>O Que Dizem Nossos Clientes</h2>
+    <div class="carrossel-depoimentos">
+      <div class="depoimento" data-aos="fade-right">
+      <img src="imagens/cliente1.jpeg" alt="Ana e João">
+        <blockquote>"Transformaram nosso sonho em realidade! Cada detalhe foi perfeito."</blockquote>
+        <cite>Ana e João</cite>
+      </div>
+      <div class="depoimento" data-aos="fade-right">
+      <img src="imagens/cliente2.jpeg" alt="Maria e Pedro">
+        <blockquote>"Profissionalismo e cuidado em todas as etapas. Recomendamos!"</blockquote>
+        <cite>Maria e Pedro</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parceiros -->
+  <section id="parceiros">
+    <h2>Nossos Parceiros</h2>
+    <div class="logos-parceiros">
+      <div class="parceiro-item" data-aos="flip-left">
+        <img src="imagens/floricultura-logo.png" alt="Floricultura Encanto" data-aos="fade-up">
+        <p>Floricultura Encanto</p>
+      </div>
+      <div class="parceiro-item" data-aos="flip-left">
+        <img src="imagens/buffet-logo.png" alt="Buffet Sabor Divino" data-aos="fade-up">
+        <p>Buffet Sabor Divino</p>
+      </div>
+      <div class="parceiro-item" data-aos="flip-left">
+        <img src="imagens/fotografia-logo.jpg" alt="Estúdio Luz e Magia" data-aos="fade-up">
+        <p>Estúdio Luz e Magia</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <h2>Perguntas Frequentes</h2>
+    <div class="pergunta">
+      <div class="pergunta-titulo">
+        <h3>Como funciona o processo de planejamento?</h3>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="resposta">
+        <p>Nosso processo inclui consultoria inicial, desenvolvimento do tema, seleção de fornecedores e acompanhamento completo até o grande dia.</p>
+      </div>
+      <div class="pergunta-titulo">
+        <h3>Como faço para entrar em contato com vocês?</h3>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="resposta">
+        <p>
+          Nosso site fornece todas as informações que você precisa, mas se ainda tiver dúvidas ou quiser falar diretamente com um de nossos especialistas, é só clicar no botão flutuante do WhatsApp no canto da tela
+          <i class="fab fa-whatsapp" style="color: #25D366; font-size: 1.1rem; vertical-align: middle;"></i> — ou
+          <a href="https://wa.me/551198765432" target="_blank">clique aqui</a> para iniciar a conversa.
+        </p>      </div>
+    </div>
+
+    <!-- Adicione mais perguntas seguindo o mesmo padrão -->
+  </section>
+
+  <!-- Rodapé -->
+  <footer id="contato">
+    <div class="rodape-conteudo">
+      <div class="coluna-rodape">
+        <h4>Casamentos & Sonhos</h4>
+        <p>Sua jornada para o altar começa aqui</p>
+      </div>
+      <div class="coluna-rodape">
+        <h4>Contato</h4>
+        <p><i class="fas fa-phone"></i> (11) 9876-5432</p>
+        <p><i class="fas fa-envelope"></i> contato@casamentos.com</p>
+      </div>
+      <div class="coluna-rodape">
+        <h4>Redes Sociais</h4>
+        <div class="redes-sociais">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    document.querySelectorAll('.pergunta-titulo').forEach(titulo => {
+      titulo.addEventListener('click', () => {
+        // Alterna a seta
+        titulo.classList.toggle('active');
+
+        // Alterna a resposta correspondente
+        const resposta = titulo.nextElementSibling;
+        resposta.classList.toggle('active');
+      });
+    });
+
+    document.body.classList.add('fade-in');
+  </script>
+  <script src="scripts.js"></script>
+<script>
+  function logout() {
+    localStorage.removeItem('clienteLogado');
+    window.location.href = "login.html";
+  }
+</script>
+</body>
+</html>

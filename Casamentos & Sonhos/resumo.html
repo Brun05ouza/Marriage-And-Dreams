@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Resumo do Planejamento - Casamentos & Sonhos</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        main {
+            max-width: 1000px;
+            margin: 120px auto 4rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: #2E7D32;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        section {
+            margin-bottom: 2.5rem;
+        }
+
+        section h3 {
+            color: #388E3C;
+            border-bottom: 2px solid #C8E6C9;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            padding-left: 1rem;
+        }
+
+        .evento {
+            margin-bottom: 1rem;
+        }
+
+        .preview-convite {
+            background: #F1F8E9;
+            border-left: 5px solid #81C784;
+            padding: 1rem;
+            border-radius: 10px;
+            font-family: 'Georgia', serif;
+        }
+
+        .actions {
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+
+        .actions button, .actions a {
+            margin: 0.5rem;
+            padding: 0.8rem 2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .print-btn {
+            background: #FFD54F;
+            color: #2E7D32;
+        }
+
+        .back-btn {
+            background: transparent;
+            border: 2px solid #81C784;
+            color: #2E7D32;
+        }
+
+        .back-btn:hover {
+            background: #e6f5e7;
+        }
+
+        @media print {
+            .actions {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo"> Casamentos & Sonhos</div>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="planos.html">Planos</a>
+        <a href="index.html#contato">Contato</a>
+    </nav>
+    <div class="logout-btn" onclick="logout()" title="Sair">
+        <img src="imagens/logout.png" alt="Sair">
+    </div>
+</header>
+
+<div class="barra-etapas">
+    <a href="planos.html" class="etapa">Plano</a>
+    <a href="planejamento.html" class="etapa">Estilo</a>
+    <a href="lista-convidados.html" class="etapa">Convidados</a>
+    <a href="convite-digital.html" class="etapa">Convite</a>
+    <a href="rsvp.html" class="etapa">RSVP</a>
+    <a href="presentes.html" class="etapa">Presentes</a>
+    <a href="cronograma.html" class="etapa">Cronograma</a>
+    <a href="resumo.html" class="etapa ativo">Resumo</a>
+</div>
+
+
+<main id="pdf-content">
+    <h2>Resumo do Planejamento do Casamento</h2>
+
+    <section id="estilo">
+        <h3>Estilo Escolhido</h3>
+        <p id="estiloSelecionado">Carregando...</p>
+    </section>
+
+    <section id="convidados">
+        <h3>Lista de Convidados</h3>
+        <ul id="listaConvidados"></ul>
+    </section>
+
+    <section id="convite">
+        <h3>Mensagem do Convite</h3>
+        <div id="textoConvite" class="preview-convite"></div>
+    </section>
+
+    <section id="cronograma">
+        <h3>Cronograma do Grande Dia</h3>
+        <div id="listaEventos"></div>
+    </section>
+
+    <section id="plano">
+        <h3>Plano Selecionado</h3>
+        <p id="planoSelecionado">Carregando...</p>
+    </section>
+
+    <section id="pagamento">
+        <h3>Informações de Pagamento</h3>
+        <p>Você escolheu o plano <strong id="planoTexto">[plano]</strong>.</p>
+        <p>Para confirmar sua contratação, realize o pagamento via Pix:</p>
+
+        <div style="background:#f9fbe7; padding:1rem; border-radius:10px; margin-top:1rem;">
+            <p><strong>Chave Pix:</strong> <code>pagamento@casamentosesonhos.com</code></p>
+            <p><strong>Valor:</strong> <span id="valorPlano">R$ 0,00</span></p>
+        </div>
+
+        <!-- QR Code opcional -->
+        <div style="margin-top:1rem;">
+            <img src="imagens/qrcode.svg" alt="QR Code Pix" style="max-width:180px;">
+        </div>
+    </section>
+
+    <div class="actions">
+        <a href="planejamento.html" class="back-btn">← Editar Planejamento</a>
+        <button class="print-btn" onclick="baixarPDF()">Baixar PDF</button>
+    </div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+    // Estilo escolhido
+    const estilo = localStorage.getItem('estiloCasamento') || 'Não selecionado';
+    document.getElementById('estiloSelecionado').textContent = estilo.charAt(0).toUpperCase() + estilo.slice(1);
+
+    // Convidados
+    const convidados = JSON.parse(localStorage.getItem('convidados') || '[]');
+    const lista = document.getElementById('listaConvidados');
+    convidados.forEach(c => {
+        const li = document.createElement('li');
+        li.textContent = `${c.nome} (${c.email})`;
+        lista.appendChild(li);
+    });
+
+    // Convite
+    const conviteTexto = localStorage.getItem('mensagemConvite') || 'Nenhuma mensagem criada.';
+    document.getElementById('textoConvite').textContent = conviteTexto;
+
+    // Cronograma
+    const eventos = JSON.parse(localStorage.getItem('cronogramaCasamento') || '[]');
+    const eventosDiv = document.getElementById('listaEventos');
+    eventos.sort((a, b) => a.horario.localeCompare(b.horario));
+    eventos.forEach(e => {
+        const div = document.createElement('div');
+        div.className = 'evento';
+        div.innerHTML = `<strong>${e.horario}</strong> - ${e.descricao}`;
+        eventosDiv.appendChild(div);
+    });
+
+    const plano = (localStorage.getItem('planoSelecionado') || 'Não selecionado').trim();
+    document.getElementById('planoSelecionado').textContent = plano;
+    document.getElementById('planoTexto').textContent = plano;
+
+    const valores = {
+        essencial: 'R$ 2.500',
+        completo: 'R$ 4.800',
+        luxo: 'R$ 7.900'
+    };
+
+    // Converte para lowercase e remove espaços
+    const chavePlano = plano.toLowerCase().replace(/\s+/g, '');
+    document.getElementById('valorPlano').textContent = valores[chavePlano] || '—';
+
+    document.body.classList.add('fade-in');
+</script>
+<script>
+    function baixarPDF() {
+        const elemento = document.getElementById('pdf-content');
+        const opt = {
+            margin:       0.5,
+            filename:     'Resumo_Casamento.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2 },
+            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+
+        html2pdf().from(elemento).set(opt).save();
+    }
+</script>
+<script>
+    function logout() {
+        localStorage.removeItem('clienteLogado');
+        window.location.href = "login.html";
+    }
+</script>
+
+</body>
+</html>

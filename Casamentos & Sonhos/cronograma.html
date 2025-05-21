@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Editor de Cronograma - Casamentos & Sonhos</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        main {
+            max-width: 900px;
+            margin: 120px auto 4rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2E7D32;
+            margin-bottom: 2rem;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        input, textarea {
+            flex: 1 1 100%;
+            padding: 0.9rem;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        input[type="time"] {
+            max-width: 150px;
+        }
+
+        button {
+            padding: 0.8rem 2rem;
+            background: #81C784;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #66bb6a;
+        }
+
+        .linha-tempo {
+            border-left: 4px solid #81C784;
+            margin-left: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .evento {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .evento::before {
+            content: "";
+            width: 14px;
+            height: 14px;
+            background: #FFD54F;
+            border: 3px solid white;
+            border-radius: 50%;
+            position: absolute;
+            left: -30px;
+            top: 5px;
+            box-shadow: 0 0 0 2px #81C784;
+        }
+
+        .evento h3 {
+            margin: 0;
+            color: #2E7D32;
+            font-size: 1.2rem;
+        }
+
+        .evento p {
+            margin: 0.3rem 0;
+            color: #555;
+        }
+
+        .evento button {
+            background: transparent;
+            color: #c62828;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            padding: 0.3rem 0;
+        }
+
+        .next-step {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .next-step a {
+            flex: 1;
+            text-align: center;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+
+        .btn-voltar {
+            background: transparent;
+            border: 2px solid #81C784;
+            color: #2E7D32;
+        }
+
+        .btn-voltar:hover {
+            background: #e6f5e7;
+        }
+
+        .btn-avancar {
+            background: #FFD54F;
+            color: #2E7D32;
+        }
+
+        .btn-avancar:hover {
+            background: #ffcc2d;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo"> Casamentos & Sonhos</div>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="planos.html">Planos</a>
+        <a href="index.html#contato">Contato</a>
+    </nav>
+    <div class="logout-btn" onclick="logout()" title="Sair">
+        <img src="imagens/logout.png" alt="Sair">
+    </div>
+</header>
+
+<div class="barra-etapas">
+    <a href="planos.html" class="etapa">Plano</a>
+    <a href="planejamento.html" class="etapa">Estilo</a>
+    <a href="lista-convidados.html" class="etapa">Convidados</a>
+    <a href="convite-digital.html" class="etapa">Convite</a>
+    <a href="rsvp.html" class="etapa">RSVP</a>
+    <a href="presentes.html" class="etapa">Presentes</a>
+    <a href="cronograma.html" class="etapa ativo">Cronograma</a>
+    <a href="resumo.html" class="etapa">Resumo</a>
+</div>
+
+
+<main>
+    <h2>Monte o Cronograma do Seu Casamento</h2>
+
+    <form id="form-evento">
+        <input type="time" id="horario" required>
+        <textarea id="descricao" rows="2" placeholder="Descrição do evento" required></textarea>
+        <button type="submit">Adicionar Evento</button>
+    </form>
+
+    <div class="linha-tempo" id="listaEventos">
+        <!-- Eventos renderizados aqui -->
+    </div>
+
+    <div class="next-step">
+        <a href="presentes.html" class="btn-voltar">← Voltar Etapa</a>
+        <a href="resumo.html" class="btn-avancar">Finalizar Planejamento</a>
+    </div>
+</main>
+
+<script>
+    const form = document.getElementById('form-evento');
+    const lista = document.getElementById('listaEventos');
+    let eventos = JSON.parse(localStorage.getItem('cronogramaCasamento') || '[]');
+
+    function renderizarEventos() {
+        lista.innerHTML = '';
+        eventos.sort((a, b) => a.horario.localeCompare(b.horario));
+        eventos.forEach((evento, i) => {
+            const div = document.createElement('div');
+            div.className = 'evento';
+            div.innerHTML = `
+          <h3>${evento.horario} - ${evento.descricao}</h3>
+          <button onclick="removerEvento(${i})">Remover</button>
+        `;
+            lista.appendChild(div);
+        });
+    }
+
+    function removerEvento(index) {
+        eventos.splice(index, 1);
+        localStorage.setItem('cronogramaCasamento', JSON.stringify(eventos));
+        renderizarEventos();
+    }
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const horario = document.getElementById('horario').value;
+        const descricao = document.getElementById('descricao').value;
+        eventos.push({ horario, descricao });
+        localStorage.setItem('cronogramaCasamento', JSON.stringify(eventos));
+        renderizarEventos();
+        form.reset();
+    })
+    renderizarEventos();
+    document.body.classList.add('fade-in');
+</script>
+<script>
+    function logout() {
+        localStorage.removeItem('clienteLogado');
+        window.location.href = "login.html";
+    }
+</script>
+</body>
+</html>

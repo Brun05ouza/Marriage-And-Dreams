@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>RSVP - Casamentos & Sonhos</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .container {
+            max-width: 700px;
+            margin: 120px auto 4rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2E7D32;
+            margin-bottom: 2rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        input, textarea, select {
+            padding: 0.9rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 0.9rem;
+            background: #81C784;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background: #66bb6a;
+        }
+
+        .next-step {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .next-step a {
+            flex: 1;
+            text-align: center;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+
+        .btn-avancar {
+            background: #FFD54F;
+            color: #2E7D32;
+        }
+
+        .btn-avancar:hover {
+            background: #ffcc2d;
+        }
+
+        .btn-voltar {
+            background: transparent;
+            border: 2px solid #81C784;
+            color: #2E7D32;
+        }
+
+        .btn-voltar:hover {
+            background: #e6f5e7;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo"> Casamentos & Sonhos</div>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="planos.html">Planos</a>
+        <a href="index.html#contato">Contato</a>
+    </nav>
+    <div class="logout-btn" onclick="logout()" title="Sair">
+        <img src="imagens/logout.png" alt="Sair">
+    </div>
+</header>
+
+<div class="barra-etapas">
+    <a href="planos.html" class="etapa">Plano</a>
+    <a href="planejamento.html" class="etapa">Estilo</a>
+    <a href="lista-convidados.html" class="etapa">Convidados</a>
+    <a href="convite-digital.html" class="etapa">Convite</a>
+    <a href="rsvp.html" class="etapa ativo">RSVP</a>
+    <a href="presentes.html" class="etapa">Presentes</a>
+    <a href="cronograma.html" class="etapa">Cronograma</a>
+    <a href="resumo.html" class="etapa">Resumo</a>
+</div>
+
+
+<main>
+    <div class="container">
+        <h2>Confirme Sua Presença</h2>
+        <form id="form-rsvp">
+            <input type="text" placeholder="Seu nome completo" required>
+            <input type="email" placeholder="Seu e-mail (opcional)">
+            <select>
+                <option value="">Você irá comparecer?</option>
+                <option value="Sim">Sim, estarei presente</option>
+                <option value="Não">Não poderei comparecer</option>
+            </select>
+            <input type="number" min="0" placeholder="Número de acompanhantes">
+            <textarea rows="3" placeholder="Restrições alimentares (opcional)"></textarea>
+            <button type="submit">Confirmar</button>
+        </form>
+
+        <div class="next-step">
+            <a href="convite-digital.html" class="btn-voltar">← Voltar Etapa</a>
+            <a href="presentes.html" class="btn-avancar">Próxima Etapa: Lista de Presentes</a>
+        </div>
+    </div>
+</main>
+
+<script>
+    document.getElementById('form-rsvp').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Presença confirmada! Obrigado por responder ao convite 💌');
+        this.reset();
+    });
+
+    document.body.classList.add('fade-in');
+</script>
+<script>
+    function logout() {
+        localStorage.removeItem('clienteLogado');
+        window.location.href = "login.html";
+    }
+</script>
+</body>
+</html>

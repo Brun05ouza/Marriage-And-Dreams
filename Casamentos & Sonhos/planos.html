@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Planos - Casamentos & Sonhos</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <div class="logo"> Casamentos & Sonhos</div>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="servicos.html">Serviços</a>
+    <a href="planos.html">Planos</a>
+    <a href="index.html#contato">Contato</a>
+  </nav>
+  <div class="logout-btn" onclick="logout()" title="Sair">
+    <img src="imagens/logout.png" alt="Sair">
+  </div>
+</header>
+
+<div class="barra-etapas">
+  <a href="planos.html" class="etapa ativo">Plano</a>
+  <a href="planejamento.html" class="etapa">Estilo</a>
+  <a href="lista-convidados.html" class="etapa">Convidados</a>
+  <a href="convite-digital.html" class="etapa">Convite</a>
+  <a href="rsvp.html" class="etapa">RSVP</a>
+  <a href="presentes.html" class="etapa">Presentes</a>
+  <a href="cronograma.html" class="etapa">Cronograma</a>
+  <a href="resumo.html" class="etapa">Resumo</a>
+</div>
+
+<main style="margin-top: 120px;">
+  <section id="planos">
+    <h2>Planos</h2>
+    <div class="grid-planos">
+      <div class="card-plano" onclick="selecionarPlano('Essencial')"  data-aos="zoom-in">
+        <h3>Essencial</h3>
+        <p>Organização básica, ideal para casamentos simples.</p>
+        <span>R$ 2.500</span>
+      </div>
+      <div class="card-plano" onclick="selecionarPlano('Completo')"  data-aos="zoom-in">
+        <h3>Completo</h3>
+        <p>Planejamento total do início ao fim.</p>
+        <span>R$ 4.800</span>
+      </div>
+      <div class="card-plano" onclick="selecionarPlano('Luxo')"  data-aos="zoom-in">
+        <h3>Luxo</h3>
+        <p>Experiência premium com tudo incluso.</p>
+        <span>R$ 7.900</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  document.querySelectorAll('.card-plano').forEach(plano => {
+    plano.addEventListener('click', () => {
+      document.querySelectorAll('.card-plano').forEach(p => p.classList.remove('selecionado'));
+      plano.classList.add('selecionado');
+    });
+  });
+
+  document.body.classList.add('fade-in');
+</script>
+
+<script>
+  function selecionarPlano(plano) {
+    localStorage.setItem('planoSelecionado', plano.trim());
+    window.location.href = 'planejamento.html';
+  }
+</script>
+<script>
+  function logout() {
+    localStorage.removeItem('clienteLogado');
+    window.location.href = "login.html";
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Planejamento do Casamento - Casamentos & Sonhos</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .etapa-container {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .etapa-container h2 {
+      margin-bottom: 2rem;
+      color: #2E7D32;
+    }
+
+    .opcoes-estilo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .card-estilo {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card-estilo:hover {
+      transform: scale(1.03);
+    }
+
+    .card-estilo img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-estilo span {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      padding: 1rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="logo"> Casamentos & Sonhos</div>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="servicos.html">Serviços</a>
+    <a href="planos.html">Planos</a>
+    <a href="index.html#contato">Contato</a>
+  </nav>
+  <div class="logout-btn" onclick="logout()" title="Sair">
+    <img src="imagens/logout.png" alt="Sair">
+  </div>
+</header>
+
+<div class="barra-etapas">
+  <a href="planos.html" class="etapa">Plano</a>
+  <a href="planejamento.html" class="etapa ativo">Estilo</a>
+  <a href="lista-convidados.html" class="etapa">Convidados</a>
+  <a href="convite-digital.html" class="etapa">Convite</a>
+  <a href="rsvp.html" class="etapa">RSVP</a>
+  <a href="presentes.html" class="etapa">Presentes</a>
+  <a href="cronograma.html" class="etapa">Cronograma</a>
+  <a href="resumo.html" class="etapa">Resumo</a>
+</div>
+
+<main style="margin-top: 120px;">
+  <section class="etapa-container">
+    <h2 class="titulo-etapa">
+      Escolha o Estilo do Seu Casamento
+    </h2>
+    <div class="opcoes-estilo">
+      <div class="card-estilo" onclick="proximaEtapa('praia')">
+        <img src="imagens/casamento-praia.png" alt="Casamento na Praia">
+        <span>Casamento na Praia</span>
+      </div>
+      <div class="card-estilo" onclick="proximaEtapa('campo')">
+        <img src="imagens/casamento-campo.jpg" alt="Casamento no Campo">
+        <span>Casamento no Campo</span>
+      </div>
+      <div class="card-estilo" onclick="proximaEtapa('igreja')">
+        <img src="imagens/casamento-igreja.jpg" alt="Casamento na Igreja">
+        <span>Casamento na Igreja</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  function proximaEtapa(estiloSelecionado) {
+    // Aqui você pode salvar no localStorage ou passar como parâmetro
+    localStorage.setItem('estiloCasamento', estiloSelecionado);
+    window.location.href = "lista-convidados.html"; // próxima etapa
+  }
+
+  document.body.classList.add('fade-in');
+</script>
+<script>
+  function logout() {
+    localStorage.removeItem('clienteLogado');
+    window.location.href = "login.html";
+  }
+</script>
+</body>
+</html>
