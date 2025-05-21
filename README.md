@@ -1,4 +1,4 @@
-##Site Criado por Bruno Souza, com ajuda de Caio Silva e Thyago Azevedo! 
+##Site Criado por Bruno Souza, com ajuda de Caio Silva, Thyago Azevedo, Whendel Esmi e Breno Silveira!  
 
 ## Casamentos & Sonhos
 
